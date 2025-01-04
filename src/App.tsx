@@ -21,6 +21,16 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <button onClick={() => {const fetchPromise = fetch("http://localhost:5000/api/data");
+          fetchPromise
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+            })}
+        }>
+          request
+        </button>
+
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

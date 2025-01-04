@@ -48,3 +48,8 @@ export default tseslint.config({
   },
 })
 ```
+
+
+
+run front end with npx vite
+run back end with node src/server.js

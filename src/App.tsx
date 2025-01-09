@@ -5,6 +5,16 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [text, setText] = useState("")
+  const [countData, setCountData] = useState("")
+
+  const processData = (data)=>{
+    let ret = ""
+    for (const dataKey in data) {
+      ret += `${dataKey}: ${data[dataKey]},\n`
+    }
+    return ret
+  }
 
   return (
     <>
@@ -18,6 +28,14 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
+        <input onChange={(e)=>{setText(e.target.value)}}></input>
+        <button onClick={() => {const fetchPromise = fetch("http://localhost:5000/api/count/" + text);
+          fetchPromise
+            .then((response) => response.json())
+            .then((data) => {
+              setCountData(data)
+            })}}>submit</button>
+        <div>{processData(countData)}</div>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>

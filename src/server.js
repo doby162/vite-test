@@ -104,7 +104,7 @@ for (const parsedInputKey in parsedInput) {
 listA = listA.sort()
 listB = listB.sort()
 
-const calculate = (inputA, inputB)=>{
+const calculateStar1 = (inputA, inputB)=>{
   let diff = 0
   for (const inputsKey in inputA) {
     diff += Math.abs(inputA[inputsKey] - inputB[inputsKey])
@@ -112,4 +112,15 @@ const calculate = (inputA, inputB)=>{
   return diff
 }
 
-const firstStarAoC = calculate(listA, listB)
+const calculateStar2 = (inputA, inputB)=>{
+  let diff = 0
+  for (const inputsKey in inputA) {
+    let count = inputB.filter((blister)=>{return blister == inputA[inputsKey]}).length
+    diff += inputA[inputsKey] * count
+  }
+  return diff
+}
+
+const firstStarAoC = calculateStar1(listA, listB)
+
+const secondStarAoC = calculateStar2(listA, listB)

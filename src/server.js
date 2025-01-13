@@ -73,3 +73,43 @@ const findMatch = (longStr, shortStr) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
+const puzzleInput = "3   4\n" +
+    "4   3\n" +
+    "2   5\n" +
+    "1   3\n" +
+    "3   9\n" +
+    "3   3"
+
+
+const parse = (input) => {
+  let doubles = input.split("\n")
+  for (const doublesKey in doubles) {
+    let d = doubles[doublesKey].split("   ")
+    doubles[doublesKey] = [d[0], d[1]]
+  }
+  return doubles
+}
+
+const parsedInput = parse(puzzleInput)
+
+let listA = []
+let listB = []
+
+for (const parsedInputKey in parsedInput) {
+  listA[parsedInputKey] = parseInt(parsedInput[parsedInputKey][0])
+  listB[parsedInputKey] = parseInt(parsedInput[parsedInputKey][1])
+}
+listA = listA.sort()
+listB = listB.sort()
+
+const calculate = (inputA, inputB)=>{
+  let diff = 0
+  for (const inputsKey in inputA) {
+    diff += Math.abs(inputA[inputsKey] - inputB[inputsKey])
+  }
+  return diff
+}
+
+const firstStarAoC = calculate(listA, listB)
